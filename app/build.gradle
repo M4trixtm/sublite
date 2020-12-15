@@ -1,18 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion buildVersions.compileSdkVersion
+    buildToolsVersion buildVersions.buildToolsVersion
 
     defaultConfig {
         applicationId "m4trixtm.sublite"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion buildVersions.minSdkVersion
+        targetSdkVersion buildVersions.targetSdkVersion
+        versionCode buildVersions.versionCode
+        versionName buildVersions.versionName
+
+        buildConfigField ("String", "SUB_API_KEY", getApiKey())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,19 +31,72 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
+String getApiKey() {
+    def propFile = rootProject.file("./local.properties")
+    def properties = new Properties()
+    properties.load(new FileInputStream(propFile))
+    return properties['SUB_API_KEY']
+}
+
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation libraries.stdLib
+    implementation libraries.coreKTX
+    implementation libraries.appCompat
+    implementation libraries.material
+    implementation libraries.constraintLayout
+    implementation libraries.legacySupport
+
+    //arch components
+    implementation libraries.viewModel
+    implementation libraries.liveData
+    implementation libraries.viewModelSavedState
+    implementation libraries.commonJava8
+
+    implementation libraries.navigationFragment
+    implementation libraries.navigationUI
+
+    //retrofit
+    implementation libraries.retrofit
+    implementation libraries.retrofitGson
+    implementation libraries.networkResponseAdapter
+
+    //hilt
+    implementation libraries.hiltAndroid
+    kapt libraries.hiltCompiler
+    implementation libraries.hiltLifeCycle
+    kapt libraries.hiltLifeCycleCompiler
+
+    //coil
+    implementation libraries.coil
+
+    //lottie
+    implementation libraries.lottie
+
+    //leakCanary
+    debugImplementation libraries.leakCanary
+
+    //whatIf
+    implementation libraries.whatIf
+
+    //bundler
+    implementation libraries.bundler
+
+    testImplementation testLibraries.jUnit
+    androidTestImplementation testLibraries.androidJUnit
+    androidTestImplementation testLibraries.espressoCore
+}
+
+kapt {
+    correctErrorTypes true
 }
