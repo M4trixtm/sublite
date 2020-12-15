@@ -1,0 +1,41 @@
+name: Build Debug APK
+
+on:
+  pull_request_review:
+    branches: [ master, develop]
+    types: [ submitted ]
+
+jobs:
+  build:
+    name: Test and build debug APK
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Access APOD_API_KEY
+      env:
+        SUB_API_KEY: ${{ secrets.SUB_API_KEY }}
+      run: echo SUB_API_KEY=\"$SUB_API_KEY\" > ./local.properties
+    - name: Build with Gradle after putting API KEY
+      run: ./gradlew build
+    - name: Run Kotlin Linter
+      run: ./gradlew ktlintStagingDebugCheck
+    - name: Run Android Linter
+      run: ./gradlew lintStagingDebug
+    - name: Run Unit Tests
+      run: ./gradlew testStagingDebugUnitTest
+    - name: Build with Gradle for debug APK
+      run: ./gradlew build
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+    - name: Releasing using Hub
+      uses: ShaunLWM/action-release-debugapk@master
+      env:
+       GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+       APP_FOLDER: app
+       RELEASE_TITLE: Latest APK
