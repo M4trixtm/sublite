@@ -33,7 +33,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding true
+        viewBinding true
     }
 
     kotlinOptions {
@@ -51,6 +51,7 @@ String getApiKey() {
 dependencies {
 
     implementation libraries.stdLib
+    implementation libraries.coroutinesCore
     implementation libraries.coreKTX
     implementation libraries.appCompat
     implementation libraries.material
@@ -59,7 +60,7 @@ dependencies {
 
     //arch components
     implementation libraries.viewModel
-    implementation libraries.liveData
+    implementation libraries.fragment
     implementation libraries.viewModelSavedState
     implementation libraries.commonJava8
 
