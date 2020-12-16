@@ -1,4 +1,4 @@
-name: Build Debug APK
+name: Testing pullrequest
 
 on:
   pull_request:
