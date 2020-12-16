@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Access APOD_API_KEY
+    - name: Access SUB_API_KEY
       env:
         SUB_API_KEY: ${{ secrets.SUB_API_KEY }}
       run: echo SUB_API_KEY=\"$SUB_API_KEY\" > ./local.properties
