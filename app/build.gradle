@@ -16,7 +16,7 @@ android {
         versionCode buildVersions.versionCode
         versionName buildVersions.versionName
 
-        buildConfigField ("String", "SUB_API_KEY", getApiKey())
+        buildConfigField("String", "SUB_API_KEY", getApiKey())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -71,6 +71,12 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofitGson
     implementation libraries.networkResponseAdapter
+
+    //room
+    implementation libraries.room
+    implementation libraries.roomKtx
+    kapt libraries.roomCompiler
+    testImplementation libraries.roomTesting
 
     //hilt
     implementation libraries.hiltAndroid
