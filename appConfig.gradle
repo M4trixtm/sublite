@@ -2,6 +2,7 @@ ext {
 
     versions = [
             kotlin                : kotlin_version,
+            coroutines            : "1.3.9",
             coreKTX               : "1.3.2",
             appCompat             : "1.2.0",
             material              : "1.2.1",
@@ -23,7 +24,12 @@ ext {
             bundler               : "1.0.3",
             jUnit                 : "4.13.1",
             androidJUnit          : "1.1.1",
-            espresso              : "3.2.0"
+            espresso              : "3.2.0",
+            robolectric           : "4.4",
+            coreTesting           : "2.1.0",
+            mockWebServer         : "4.9.0",
+            mockitoKotlin         : "2.2.0",
+            googleTruth           : "1.0.1"
     ]
 
     buildVersions = [
@@ -37,6 +43,7 @@ ext {
 
     libraries = [
             stdLib                : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+            coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
             coreKTX               : "androidx.core:core-ktx:$versions.coreKTX",
             appCompat             : "androidx.appcompat:appcompat:$versions.appCompat",
             material              : "com.google.android.material:material:$versions.material",
@@ -68,8 +75,15 @@ ext {
     ]
 
     testLibraries = [
-            jUnit       : "junit:junit:$versions.jUnit",
-            androidJUnit: "androidx.test.ext:junit:$versions.androidJUnit",
-            espressoCore: "androidx.test.espresso:espresso-core:$versions.espresso"
+            jUnit                : "junit:junit:$versions.jUnit",
+            androidJUnit         : "androidx.test.ext:junit:$versions.androidJUnit",
+            espressoCore         : "androidx.test.espresso:espresso-core:$versions.espresso",
+            coroutinesTest       : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines",
+            coroutinesAndroidTest: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+            robolectric          : "org.robolectric:robolectric:$versions.robolectric",
+            coreTesting          : "androidx.arch.core:core-testing:$versions.coreTesting",
+            mockWebServer        : "com.squareup.okhttp3:mockwebserver:$versions.mockWebServer",
+            mockitoKotlin        : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin",
+            googleTruth          : "com.google.truth:truth:$versions.googleTruth"
     ]
 }
