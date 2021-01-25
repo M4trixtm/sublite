@@ -19,14 +19,14 @@ object NetworkModule {
     @Singleton
     fun retrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().client(okHttpClient)
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Provides
     @Singleton
     fun okHttpClient(): OkHttpClient {
         return OkHttpClient().newBuilder()
-                .build()
+            .build()
     }
 }
