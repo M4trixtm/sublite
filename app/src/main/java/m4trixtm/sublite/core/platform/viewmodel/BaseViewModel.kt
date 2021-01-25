@@ -12,11 +12,9 @@ abstract class BaseViewModel : ViewModel() {
 
     inline fun <T> scope(crossinline block: () -> Flow<T>): StateFlow<T?> {
         return MutableStateFlow<T?>(null).apply {
-            MutableStateFlow<T?>(null).apply {
                 viewModelScope.launch {
                     emitAll(block())
                 }
-            }
         }
     }
 }
