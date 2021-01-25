@@ -26,7 +26,7 @@ jobs:
     - name: Run Kotlin Linter
       run: ./gradlew ktlintCheck
     - name: Run Unit Tests
-      run: ./gradlew testStagingDebugUnitTest
+      run: ./gradlew testDebugUnitTest
     - name: Build with Gradle for debug APK
       run: ./gradlew build
     - name: Build Debug APK
