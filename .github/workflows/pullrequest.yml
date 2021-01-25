@@ -24,7 +24,7 @@ jobs:
     - name: Build with Gradle after putting API KEY
       run: ./gradlew build
     - name: Run Kotlin Linter
-      run: ./gradlew ktlintStagingDebugCheck
+      run: ./gradlew ktlintCheck
     - name: Run Android Linter
       run: ./gradlew lintStagingDebug
     - name: Run Unit Tests
