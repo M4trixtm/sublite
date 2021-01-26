@@ -1,7 +1,9 @@
 package m4trixtm.sublite.features.subtitle.entity
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class SubtitleDownloadLink(
     @SerializedName("link")
     val link: String,

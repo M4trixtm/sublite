@@ -1,8 +1,10 @@
 package m4trixtm.sublite.features.subtitle.entity
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+@Keep
 data class Subtitle(
     @SerializedName("subtitle_id")
     val id: String,
