@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Notify repo owners
+    name: Notify repo owners to issue
 
     runs-on: ubuntu-latest
 
