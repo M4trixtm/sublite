@@ -32,9 +32,9 @@ jobs:
     - name: Build Debug APK
       run: ./gradlew assembleDebug
     - name: Send PR confirmation to telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.CHAT_ID }}
-          token: ${{ secrets.BOT_TOKEN }}
-          message: |
-            Pull request action triggered succussfully
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.CHAT_ID }}
+        token: ${{ secrets.BOT_TOKEN }}
+        message: |
+          Pull request action triggered succussfully
