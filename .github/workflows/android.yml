@@ -37,7 +37,7 @@ jobs:
         name: App
         path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
     - name: Send debug APk to telegram
-      uses: appleboy/telegram-action@master
+      uses: appleboy/telegram-action@0.1.0
       with:
         to: ${{ secrets.CHAT_ID }}
         token: ${{ secrets.BOT_TOKEN }}
