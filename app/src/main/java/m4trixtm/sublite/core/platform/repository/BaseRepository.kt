@@ -16,7 +16,6 @@ abstract class BaseRepository {
             val response = request()
             onSuccess()
             emit(response)
-
         } catch (e: IOException) {
             e.message?.let {
                 onError(it)

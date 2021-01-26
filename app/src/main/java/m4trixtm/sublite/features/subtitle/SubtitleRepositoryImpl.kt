@@ -6,7 +6,8 @@ import m4trixtm.sublite.features.ApiResponse
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
 
-class SubtitleRepositoryImpl(private val service: SubtitleService) : BaseRepository(),
+class SubtitleRepositoryImpl(private val service: SubtitleService) :
+    BaseRepository(),
     SubtitleRepository {
 
     override fun search(
