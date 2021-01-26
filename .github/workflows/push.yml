@@ -1,0 +1,20 @@
+name: Push notifier
+
+on:
+  push:
+
+
+jobs:
+  build:
+    name: Test and build debug APK
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send push notification to telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.CHAT_ID }}
+        token: ${{ secrets.BOT_TOKEN }}
+        message: |
+          some commits pushed to the repo, go check that out
