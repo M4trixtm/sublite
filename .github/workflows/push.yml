@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Send push notification to telegram
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.CHAT_ID }}
         token: ${{ secrets.BOT_TOKEN }}
         message: |
-          some commits pushed to the repo, go check that out
+          some commits pushed to the repo:
+          Head message: ${{ github.event.head_commit.message }}
+          Pay attention: @notitle & @ka_hama
