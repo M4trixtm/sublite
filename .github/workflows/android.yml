@@ -1,13 +1,13 @@
 name: Build Debug APK
 
 on:
-  pull_request_review:
+  pull_request:
     branches: [ master, develop]
-    types: [ submitted ]
+    types: [ closed ]
 
 jobs:
   build:
-    name: Test and build debug APK
+    name: Test and deploy debug APK
 
     runs-on: ubuntu-latest
 
@@ -31,9 +31,16 @@ jobs:
       run: ./gradlew build
     - name: Build Debug APK
       run: ./gradlew assembleDebug
-    - name: Releasing using Hub
-      uses: ShaunLWM/action-release-debugapk@master
-      env:
-       GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-       APP_FOLDER: app
-       RELEASE_TITLE: Latest APK
+    - name: Upload APK to workspace
+      uses: actions/upload-artifact@v2
+      with:
+        name: App
+        path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+    - name: Send debug APk to telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.CHAT_ID }}
+        token: ${{ secrets.BOT_TOKEN }}
+        message: |
+          Below is the apk for commit: ${{ github.event.head_commit.message }}
+        document: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk`
