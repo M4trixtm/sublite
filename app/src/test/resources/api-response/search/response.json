@@ -1,0 +1,113 @@
+{
+  "total_pages": 1,
+  "total_count": 10,
+  "page": 1,
+  "data": [
+    {
+      "id": "998327",
+      "type": "subtitle",
+      "attributes": {
+        "subtitle_id": "998327",
+        "language": "pt-BR",
+        "download_count": 677290,
+        "new_download_count": 24,
+        "hearing_impaired": false,
+        "hd": false,
+        "format": null,
+        "fps": 25.0,
+        "votes": 0,
+        "points": 0,
+        "ratings": 0.0,
+        "from_trusted": false,
+        "foreign_parts_only": false,
+        "auto_translation": false,
+        "ai_translated": false,
+        "machine_translated": null,
+        "upload_date": "2014-11-20T02:37:51Z",
+        "release": "Interstellar.2014.HDCAM.x264.AAC-SUMO",
+        "comments": "",
+        "legacy_subtitle_id": 5900370,
+        "uploader": {
+          "uploader_id": 3282,
+          "name": "COF7CJpS",
+          "rank": "app developer"
+        },
+        "feature_details": {
+          "feature_id": 594208,
+          "feature_type": "Movie",
+          "year": 2014,
+          "title": "Interstellar",
+          "movie_name": "2014 - Interstellar",
+          "imdb_id": 816692,
+          "tmdb_id": 157336
+        },
+        "url": "https://www.opensubtitles.com/pt-BR/subtitles/legacy/5900370",
+        "related_links": {
+          "label": "All subtitles for Interstellar",
+          "url": "https://www.opensubtitles.com/pt-BR/movies/2014-interstellar",
+          "img_url": "https://s9.osdb.link/features/8/0/2/594208.jpg"
+        },
+        "files": [
+          {
+            "file_id": 1084435,
+            "cd_number": 1,
+            "file_name": "Interstellar.2014.HDCAM.x264.AAC-SUMO-por.srt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1007788",
+      "type": "subtitle",
+      "attributes": {
+        "subtitle_id": "1007788",
+        "language": "en",
+        "download_count": 641831,
+        "new_download_count": 266,
+        "hearing_impaired": false,
+        "hd": true,
+        "format": null,
+        "fps": 23.976,
+        "votes": 7,
+        "points": 24,
+        "ratings": 3.4,
+        "from_trusted": true,
+        "foreign_parts_only": false,
+        "auto_translation": false,
+        "ai_translated": false,
+        "machine_translated": null,
+        "upload_date": "2015-03-15T05:42:08Z",
+        "release": "Interstellar.2014.720p.BluRay.x264-DAA",
+        "comments": "",
+        "legacy_subtitle_id": 6080089,
+        "uploader": {
+          "uploader_id": 63405,
+          "name": "Luis-subs",
+          "rank": "warning"
+        },
+        "feature_details": {
+          "feature_id": 594208,
+          "feature_type": "Movie",
+          "year": 2014,
+          "title": "Interstellar",
+          "movie_name": "2014 - Interstellar",
+          "imdb_id": 816692,
+          "tmdb_id": 157336
+        },
+        "url": "https://www.opensubtitles.com/en/subtitles/legacy/6080089",
+        "related_links": {
+          "label": "All subtitles for Interstellar",
+          "url": "https://www.opensubtitles.com/en/movies/2014-interstellar",
+          "img_url": "https://s9.osdb.link/features/8/0/2/594208.jpg"
+        },
+        "files": [
+          {
+            "file_id": 1094041,
+            "cd_number": 1,
+            "file_name": "Interstellar.2014.720p.BluRay.x264-DAA.srt"
+          }
+        ]
+      }
+    }
+  ]
+}
