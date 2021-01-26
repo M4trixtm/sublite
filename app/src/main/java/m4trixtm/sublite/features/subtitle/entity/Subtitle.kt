@@ -1,11 +1,14 @@
 package m4trixtm.sublite.features.subtitle.entity
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import m4trixtm.sublite.core.platform.entity.BaseEntity
 import java.util.*
 
+@Keep
 data class Subtitle(
     @SerializedName("subtitle_id")
-    val id: String,
+    override val id: String,
     @SerializedName("language")
     val language: String,
     @SerializedName("download_count")
@@ -40,4 +43,4 @@ data class Subtitle(
     val details: SubtitleDetails,
     @SerializedName("files")
     val files: List<SubtitleFile>
-)
+): BaseEntity<String>
