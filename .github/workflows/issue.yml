@@ -5,15 +5,16 @@ on:
     types: [opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, demilestoned]
 
 jobs:
-  build: notify repo owners
+  build:
+    name: Notify repo owners
 
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: Send issue notification to telegram
-    uses: appleboy/telegram-action@master
-    with:
-      to: ${{ secrets.CHAT_ID }}
-      token: ${{ secrets.BOT_TOKEN }}
-      message: |
+    steps:
+    - name: Send issue notification to telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.CHAT_ID }}
+        token: ${{ secrets.BOT_TOKEN }}
+        message: |
           New issue event triggered on repository! Check it out
