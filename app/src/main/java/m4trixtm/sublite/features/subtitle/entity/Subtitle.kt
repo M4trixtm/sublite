@@ -43,4 +43,4 @@ data class Subtitle(
     val details: SubtitleDetails,
     @SerializedName("files")
     val files: List<SubtitleFile>
-): BaseEntity<String>
+) : BaseEntity<String>

@@ -12,4 +12,4 @@ data class SubtitleFile(
     val fileName: String,
     @SerializedName("cd_number")
     val cdNumber: Int,
-): BaseEntity<Int>
+) : BaseEntity<Int>

@@ -20,4 +20,4 @@ data class SubtitleDetails(
     val imdbId: Int,
     @SerializedName("tmdb_id")
     val tmdbId: Int
-): BaseEntity<Long>
+) : BaseEntity<Long>
