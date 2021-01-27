@@ -1,6 +1,7 @@
 package m4trixtm.sublite.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.IOException
@@ -38,20 +39,29 @@ abstract class ServiceTest<T> {
     }
 
     @Throws(IOException::class)
-    fun enqueueResponse(fileName: String, headers: Map<String, String> = emptyMap()) {
+    fun enqueueResponse(
+        fileName: String,
+        headers: Map<String, String> = emptyMap(),
+        code: Int = 200
+    ) {
         val inputStream = javaClass.classLoader!!.getResourceAsStream("api-response/$fileName")
         val source = inputStream.source().buffer()
         val mockResponse = MockResponse()
         for ((key, value) in headers) {
             mockResponse.addHeader(key, value)
         }
-        mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
+        mockWebServer.enqueue(
+            mockResponse
+                .setBody(source.readString(StandardCharsets.UTF_8))
+                .setResponseCode(code)
+        )
     }
 
     fun createService(clazz: Class<T>): T {
         return Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .build()
             .create(clazz)
     }

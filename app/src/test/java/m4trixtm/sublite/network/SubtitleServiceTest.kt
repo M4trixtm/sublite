@@ -1,5 +1,6 @@
 package m4trixtm.sublite.network
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import m4trixtm.sublite.*
@@ -30,7 +31,7 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
         val actual = service.search("interstellar")
         mockWebServer.takeRequest()
 
-        actual.assertThat {
+        (actual as NetworkResponse.Success).body.assertThat {
             totalPages equals expected.totalPages
             totalCount equals expected.totalCount
             page equals expected.page
@@ -90,10 +91,9 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
     fun `Download subtitle link parsing`() = runBlocking {
         enqueueResponse("download/response.json")
         val mocked = SubtitleMocks.downloadLinkResponse
-        val actual = requireNotNull(service.getDownloadLink(fileId = 12345))
-        mockWebServer.takeRequest()
+        val actual = service.getDownloadLink(fileId = 12345)
 
-        actual.assertThat {
+        (actual as NetworkResponse.Success).body.assertThat {
             link equals mocked.link
             fileName equals mocked.fileName
             requests equals mocked.requests

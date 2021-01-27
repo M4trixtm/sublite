@@ -1,6 +1,7 @@
 package m4trixtm.sublite.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -9,11 +10,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import m4trixtm.sublite.MainCoroutinesRule
 import m4trixtm.sublite.SubtitleMocks
-import m4trixtm.sublite.features.ApiResponse
 import m4trixtm.sublite.features.subtitle.SubtitleRepositoryImpl
 import m4trixtm.sublite.features.subtitle.SubtitleService
-import m4trixtm.sublite.features.subtitle.entity.Subtitle
-import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -38,7 +36,7 @@ class SubliteRepositoryTest {
     @Test
     fun `Search subtitles`() = runBlocking {
         val searchQuery = "interstellar"
-        val apiResponse: ApiResponse<Subtitle> = SubtitleMocks.searchResponse
+        val apiResponse = NetworkResponse.Success(body = SubtitleMocks.searchResponse, code = 200)
 
         whenever(service.search(searchQuery)).thenReturn(apiResponse)
         repository.search(searchQuery, {}, {}).first()
@@ -49,7 +47,7 @@ class SubliteRepositoryTest {
     @Test
     fun `Get download link`() = runBlocking {
         val subtitleId = 12345
-        val apiResponse: SubtitleDownloadLink = SubtitleMocks.downloadLinkResponse
+        val apiResponse = NetworkResponse.Success(body = SubtitleMocks.downloadLinkResponse, code = 200)
 
         whenever(service.getDownloadLink(subtitleId)).thenReturn(apiResponse)
         repository.getDownloadLink(subtitleId, {}, {}).first()
