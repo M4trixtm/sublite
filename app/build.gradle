@@ -88,6 +88,10 @@ dependencies {
     implementation libraries.constraintLayout
     implementation libraries.legacySupport
 
+    // Groupie Adapter
+    implementation libraries.groupieAdapter
+    implementation libraries.groupieAdapterDataBinding
+
     //arch components
     implementation libraries.viewModel
     implementation libraries.fragment
