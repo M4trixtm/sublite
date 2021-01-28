@@ -1,16 +1,10 @@
 package m4trixtm.sublite.core.binding
 
-import android.net.Uri
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.text.DecimalFormat
+import com.xwray.groupie.GroupieAdapter
 
 @BindingAdapter("android:gone")
 fun gone(view: View, gone: Boolean) {
@@ -23,7 +17,7 @@ fun invisible(view: View, invisible: Boolean) {
 }
 
 @BindingAdapter("android:adapter")
-fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+fun bindAdapter(view: RecyclerView, adapter: GroupieAdapter) {
     view.adapter = adapter
 }
 
