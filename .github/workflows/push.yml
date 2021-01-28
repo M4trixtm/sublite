@@ -18,6 +18,9 @@ jobs:
         to: ${{ secrets.CHAT_ID }}
         token: ${{ secrets.BOT_TOKEN }}
         message: |
-          some commits pushed to the repo:
+          Some commits pushed to the repo! 
+          Triggered by: ${{ github.actor }}
+          Branch or TAG: ${{ github.ref }}
+          Commit SHA: ```${{ github.sha }}```
           Head message: ${{ github.event.head_commit.message }}
-          Pay attention: @notitle & @ka_hama
+          Pay attention: ${{ secrets.MOEIN_ID }} & ${{ secrets.MAMAD_ID }}
