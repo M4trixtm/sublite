@@ -36,4 +36,7 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           message: |
             Testing latest push was succesfull
+            Triggered by: ${{ github.actor }}
+            Branch or TAG: ${{ github.ref }}
+            Commit SHA: ${{ github.sha }}
             latest commit description: ${{ github.event.head_commit.message }}
