@@ -23,5 +23,6 @@ jobs:
          to: ${{ secrets.CHAT_ID }}
          token: ${{ secrets.BOT_TOKEN }}
          message: |
-          Issue event triggered! ${{ github.event.issue.number }}
-          Check it out @notitle & @ka_hama
+          Issue event triggered! 
+          Triggered by: ${{ github.actor }}
+          Pay attention: ${{ secrets.MOEIN_ID }} & ${{ secrets.MAMAD_ID }}
