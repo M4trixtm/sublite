@@ -21,6 +21,6 @@ jobs:
           Some commits pushed to the repo! 
           Triggered by: ${{ github.actor }}
           Branch or TAG: ${{ github.ref }}
-          Commit SHA: ```${{ github.sha }}```
+          Commit SHA: ${{ github.sha }}
           Head message: ${{ github.event.head_commit.message }}
           Pay attention: ${{ secrets.MOEIN_ID }} & ${{ secrets.MAMAD_ID }}
