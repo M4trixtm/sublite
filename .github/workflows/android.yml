@@ -34,13 +34,42 @@ jobs:
     - name: Upload APK to workspace
       uses: actions/upload-artifact@v2
       with:
-        name: App
-        path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+        name: app
+        path: app/build/outputs/apk/debug/app-debug.apk
     - name: Send debug APk to telegram
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.CHAT_ID }}
         token: ${{ secrets.BOT_TOKEN }}
         message: |
-          Below is the apk for commit: ${{ github.event.head_commit.message }}
-        document: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk`
+          Here is the debug APK for ${{ github.event_name }}
+          Runner OS: ${{ runner.os }}
+          Event: ${{ github.event_name }}
+          Job ID: ${{ github.job }}
+          Triggered by: ${{ github.actor }}
+          Branch or TAG: ${{ github.ref }}
+          Base ref: ${{ github.base_ref }}
+          Head ref: ${{ github.head_ref }}
+          Commit SHA: ${{ github.sha }}
+        document: app/build/outputs/apk/debug/app-debug.apk
+    - name: Discord Debug APK notification
+      env:
+       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+          args: |
+            Here is the debug APK for ${{ github.event_name }}
+            Runner OS: ${{ runner.os }}
+            Event: ${{ github.event_name }}
+            Job ID: ${{ github.job }}
+            Triggered by: ${{ github.actor }}
+            Branch or TAG: ${{ github.ref }}
+            Base ref: ${{ github.base_ref }}
+            Head ref: ${{ github.head_ref }}
+            Commit SHA: ${{ github.sha }}
+    - name: Send Debug APK to discord channel
+      uses: sinshutu/upload-to-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      with:
+        args: app/build/outputs/apk/debug/app-debug.apk
