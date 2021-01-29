@@ -61,7 +61,7 @@ class SubliteRepositoryTest {
         val apiResponse = NetworkResponse.Success(body = SubtitleMocks.searchResponse, code = 200)
 
         whenever(service.getMostDownloaded()).thenReturn(apiResponse)
-        repository.getMostDownloaded(onSuccess = {},onError = {}).first()
+        repository.getMostDownloaded(onSuccess = {}, onError = {}).first()
 
         verify(service).getMostDownloaded()
 

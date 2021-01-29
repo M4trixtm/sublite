@@ -47,7 +47,7 @@ class SubtitleRepositoryImpl(private val service: SubtitleService) :
         onSuccess: () -> Unit,
         onError: (message: String) -> Unit
     ): Flow<ApiResponse<Subtitle>> = networkRequest(
-        request = { service.getLatestSubtitles(languages, type)},
+        request = { service.getLatestSubtitles(languages, type) },
         onSuccess = { onSuccess() },
         onError = { onError(it) }
     )
