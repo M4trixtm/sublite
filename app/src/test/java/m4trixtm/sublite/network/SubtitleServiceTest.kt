@@ -1,6 +1,7 @@
 package m4trixtm.sublite.network
 
 import com.haroldadmin.cnradapter.NetworkResponse
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import m4trixtm.sublite.*
@@ -32,54 +33,54 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
         mockWebServer.takeRequest()
 
         (actual as NetworkResponse.Success).body.assertThat {
-            totalPages equals expected.totalPages
-            totalCount equals expected.totalCount
-            page equals expected.page
+            totalPages shouldBe expected.totalPages
+            totalCount shouldBe expected.totalCount
+            page shouldBe expected.page
 
             data.assertForeach { dataPosition ->
                 val subtitle = expected.data[dataPosition]
 
-                id equals subtitle.id
-                type equals subtitle.type
+                id shouldBe subtitle.id
+                type shouldBe subtitle.type
 
                 attributes.assertThat {
                     val attributes = subtitle.attributes
 
-                    id equals attributes.id
-                    language equals attributes.language
-                    downloadCount equals attributes.downloadCount
-                    newDownloadCount equals attributes.newDownloadCount
-                    isHD equals attributes.isHD
-                    format equals attributes.format
-                    fps equals attributes.fps
-                    votes equals attributes.votes
-                    points equals attributes.points
-                    ratings equals attributes.ratings
-                    fromTrusted equals attributes.fromTrusted
-                    foreignPartsOnly equals attributes.foreignPartsOnly
-                    autoTranslation equals attributes.autoTranslation
-                    aiTranslated equals attributes.aiTranslated
-                    uploadDate equals attributes.uploadDate
-                    release equals attributes.release
+                    id shouldBe attributes.id
+                    language shouldBe attributes.language
+                    downloadCount shouldBe attributes.downloadCount
+                    newDownloadCount shouldBe attributes.newDownloadCount
+                    isHD shouldBe attributes.isHD
+                    format shouldBe attributes.format
+                    fps shouldBe attributes.fps
+                    votes shouldBe attributes.votes
+                    points shouldBe attributes.points
+                    ratings shouldBe attributes.ratings
+                    fromTrusted shouldBe attributes.fromTrusted
+                    foreignPartsOnly shouldBe attributes.foreignPartsOnly
+                    autoTranslation shouldBe attributes.autoTranslation
+                    aiTranslated shouldBe attributes.aiTranslated
+                    uploadDate shouldBe attributes.uploadDate
+                    release shouldBe attributes.release
 
                     details.assertThat {
                         val details = attributes.details
 
-                        id equals details.id
-                        type equals details.type
-                        year equals details.year
-                        title equals details.title
-                        movieName equals details.movieName
-                        imdbId equals details.imdbId
-                        tmdbId equals details.tmdbId
+                        id shouldBe details.id
+                        type shouldBe details.type
+                        year shouldBe details.year
+                        title shouldBe details.title
+                        movieName shouldBe details.movieName
+                        imdbId shouldBe details.imdbId
+                        tmdbId shouldBe details.tmdbId
                     }
 
                     files.assertForeach { filesPosition ->
                         val file = attributes.files[filesPosition]
 
-                        id equals file.id
-                        cdNumber equals file.cdNumber
-                        fileName equals file.fileName
+                        id shouldBe file.id
+                        cdNumber shouldBe file.cdNumber
+                        fileName shouldBe file.fileName
                     }
                 }
             }
@@ -94,12 +95,12 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
         val actual = service.getDownloadLink(fileId = 12345)
 
         (actual as NetworkResponse.Success).body.assertThat {
-            link equals mocked.link
-            fileName equals mocked.fileName
-            requests equals mocked.requests
-            allowed equals mocked.allowed
-            remaining equals mocked.remaining
-            message equals mocked.message
+            link shouldBe mocked.link
+            fileName shouldBe mocked.fileName
+            requests shouldBe mocked.requests
+            allowed shouldBe mocked.allowed
+            remaining shouldBe mocked.remaining
+            message shouldBe mocked.message
         }
     }
 }

@@ -140,7 +140,7 @@ dependencies {
     testImplementation testLibraries.coreTesting
     testImplementation testLibraries.mockWebServer
     testImplementation testLibraries.mockitoKotlin
-    testImplementation testLibraries.googleTruth
+    testImplementation testLibraries.kotestAssertions
     androidTestImplementation testLibraries.androidJUnit
     androidTestImplementation testLibraries.espressoCore
 }

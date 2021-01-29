@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.firstOrNull
@@ -14,7 +15,6 @@ import m4trixtm.sublite.MainCoroutinesRule
 import m4trixtm.sublite.SubtitleMocks
 import m4trixtm.sublite.core.platform.model.NetworkError
 import m4trixtm.sublite.core.platform.repository.BaseRepository
-import m4trixtm.sublite.equals
 import m4trixtm.sublite.features.subtitle.SubtitleService
 import org.junit.Before
 import org.junit.Rule
@@ -55,8 +55,7 @@ class BaseRepositoryTest {
             request = { service.getDownloadLink(fileId) },
             onSuccess = { onSuccess() },
             onError = { }
-        ).collect { actual ->
-            actual equals ""
+        ).collect {
             verify(onSuccess).invoke()
             verify(onError, never()).invoke("")
         }
