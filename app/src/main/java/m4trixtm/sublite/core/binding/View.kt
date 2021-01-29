@@ -1,10 +1,12 @@
 package m4trixtm.sublite.core.binding
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.xwray.groupie.GroupieAdapter
+import m4trixtm.sublite.core.extension.loadFromUrl
 
 @BindingAdapter("android:gone")
 fun gone(view: View, gone: Boolean) {
@@ -24,4 +26,9 @@ fun bindAdapter(view: RecyclerView, adapter: GroupieAdapter) {
 @BindingAdapter("android:refreshing")
 fun swipeRefreshLayoutRefreshing(view: SwipeRefreshLayout, isRefreshing: Boolean?) {
     view.isRefreshing = isRefreshing ?: false
+}
+
+@BindingAdapter("android:loadImageFromUrl")
+fun loadImageFromUrl(view: ImageView, url: String?) {
+    url?.let { view.loadFromUrl(it) }
 }
