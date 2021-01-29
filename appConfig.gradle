@@ -30,7 +30,8 @@ ext {
             coreTesting           : "2.1.0",
             mockWebServer         : "4.9.0",
             mockitoKotlin         : "2.2.0",
-            googleTruth           : "1.0.1"
+            kotestAssertions       : "4.0.7"
+
     ]
 
     buildVersions = [
@@ -87,6 +88,6 @@ ext {
             coreTesting          : "androidx.arch.core:core-testing:$versions.coreTesting",
             mockWebServer        : "com.squareup.okhttp3:mockwebserver:$versions.mockWebServer",
             mockitoKotlin        : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin",
-            googleTruth          : "com.google.truth:truth:$versions.googleTruth"
+            kotestAssertions     : "io.kotest:kotest-assertions:$versions.kotestAssertions"
     ]
 }

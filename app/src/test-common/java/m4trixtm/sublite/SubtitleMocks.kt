@@ -129,6 +129,8 @@ object SubtitleMocks {
             message = ""
         )
 
-    fun dateOf(date: String): Date? =
-        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(date)
+    private fun dateOf(date: String): Date? =
+        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }.parse(date)
 }
