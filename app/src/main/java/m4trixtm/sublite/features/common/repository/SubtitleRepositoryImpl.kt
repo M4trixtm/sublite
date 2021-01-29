@@ -30,4 +30,26 @@ class SubtitleRepositoryImpl(private val service: SubtitleService) :
         onSuccess = { onSuccess() },
         onError = { onError(it) }
     )
+
+    override fun getMostDownloaded(
+        languages: String?,
+        type: String?,
+        onSuccess: () -> Unit,
+        onError: (message: String) -> Unit
+    ): Flow<ApiResponse<Subtitle>> = networkRequest(
+        request = { service.getMostDownloaded(languages, type) },
+        onSuccess = { onSuccess() },
+        onError = { onError(it) }
+    )
+
+    override fun getLatestSubtitles(
+        languages: String?,
+        type: String?,
+        onSuccess: () -> Unit,
+        onError: (message: String) -> Unit
+    ): Flow<ApiResponse<Subtitle>> = networkRequest(
+        request = { service.getLatestSubtitles(languages, type)},
+        onSuccess = { onSuccess() },
+        onError = { onError(it) }
+    )
 }
