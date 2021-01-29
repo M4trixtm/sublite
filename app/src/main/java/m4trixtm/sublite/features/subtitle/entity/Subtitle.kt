@@ -41,6 +41,8 @@ data class Subtitle(
     val release: String,
     @SerializedName("feature_details")
     val details: SubtitleDetails,
+    @SerializedName("related_links")
+    val relatedLinks: SubtitleRelatedLinks,
     @SerializedName("files")
     val files: List<SubtitleFile>
 ) : BaseEntity<String>

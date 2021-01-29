@@ -75,6 +75,13 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
                         tmdbId shouldBe details.tmdbId
                     }
 
+                    relatedLinks.assertThat {
+                        val relatedLinks = attributes.relatedLinks
+                        label shouldBe relatedLinks.label
+                        url shouldBe relatedLinks.url
+                        imageUrl shouldBe relatedLinks.imageUrl
+                    }
+
                     files.assertForeach { filesPosition ->
                         val file = attributes.files[filesPosition]
 
