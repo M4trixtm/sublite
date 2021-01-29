@@ -2,10 +2,7 @@ package m4trixtm.sublite
 
 import m4trixtm.sublite.features.ApiResponse
 import m4trixtm.sublite.features.Data
-import m4trixtm.sublite.features.subtitle.entity.Subtitle
-import m4trixtm.sublite.features.subtitle.entity.SubtitleDetails
-import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
-import m4trixtm.sublite.features.subtitle.entity.SubtitleFile
+import m4trixtm.sublite.features.subtitle.entity.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,6 +44,7 @@ object SubtitleMocks {
             uploadDate = dateOf("2014-11-20T02:37:51Z")!!,
             release = "Interstellar.2014.HDCAM.x264.AAC-SUMO",
             details = subtitleDetails1,
+            relatedLinks = subtitleRelatedLinks1,
             files = subtitleFiles1
         )
 
@@ -96,7 +94,22 @@ object SubtitleMocks {
             uploadDate = dateOf("2015-03-15T05:42:08Z")!!,
             release = "Interstellar.2014.720p.BluRay.x264-DAA",
             details = subtitleDetails2,
+            relatedLinks = subtitleRelatedLinks2,
             files = subtitleFiles2
+        )
+
+    val subtitleRelatedLinks1: SubtitleRelatedLinks
+        get() = SubtitleRelatedLinks(
+            label = "All subtitles for Interstellar",
+            url = "https://www.opensubtitles.com/pt-BR/movies/2014-interstellar",
+            imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
+        )
+
+    val subtitleRelatedLinks2: SubtitleRelatedLinks
+        get() = SubtitleRelatedLinks(
+            label = "All subtitles for Interstellar",
+            url = "https://www.opensubtitles.com/en/movies/2014-interstellar",
+            imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
         )
 
     val subtitleDetails2: SubtitleDetails
