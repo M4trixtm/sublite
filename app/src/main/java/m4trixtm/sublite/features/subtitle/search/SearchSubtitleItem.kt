@@ -8,11 +8,15 @@ import m4trixtm.sublite.R
 import m4trixtm.sublite.databinding.ItemSubtitleSearchBinding
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 
-class SearchSubtitleItem(private val subtitle: Subtitle) :
+class SearchSubtitleItem(
+    private val subtitle: Subtitle,
+    private val onItemClicked: (item: Subtitle) -> Unit
+) :
     BindableItem<ItemSubtitleSearchBinding>() {
 
     override fun bind(viewBinding: ItemSubtitleSearchBinding, position: Int) {
         viewBinding.subtitle = subtitle
+        viewBinding.root.setOnClickListener { onItemClicked(subtitle) }
     }
 
     override fun getLayout(): Int = R.layout.item_subtitle_search

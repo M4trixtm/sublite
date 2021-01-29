@@ -23,12 +23,19 @@ class SearchSubtitleViewModel @Inject constructor(private val repository: Subtit
         }
     }
 
+    private val _clickedItem = MutableStateFlow<Subtitle?>(null)
+    val clickedItem: StateFlow<Subtitle?> get() = _clickedItem
+
     fun search(query: String) = viewModelScope.launch {
         searchQuery.send(query)
     }
 
     private fun Flow<ApiResponse<Subtitle>>.mapToSubtitleList(): Flow<List<SearchSubtitleItem>> =
         map {
-            it.data.map { data -> SearchSubtitleItem(data.attributes) }
+            it.data.map { data ->
+                SearchSubtitleItem(data.attributes) { item ->
+                    _clickedItem.value = item
+                }
+            }
         }
 }

@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import com.skydoves.whatif.whatIfNotNull
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
 import m4trixtm.sublite.R
 import m4trixtm.sublite.core.platform.fragment.BaseFragment
+import m4trixtm.sublite.core.toast.shortToast
 import m4trixtm.sublite.databinding.FragmentSearchSubtitleBinding
+import m4trixtm.sublite.features.subtitle.entity.Subtitle
 
 @AndroidEntryPoint
 class SearchSubtitleFragment :
@@ -16,6 +20,7 @@ class SearchSubtitleFragment :
 
     private val viewModel: SearchSubtitleViewModel by viewModels()
 
+    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,5 +33,11 @@ class SearchSubtitleFragment :
                 viewModel.search(it.toString())
             }
         }
+
+        viewModel.clickedItem.collectOnLifecycleScope {
+            it.whatIfNotNull { subtitle -> onItemClicked(subtitle) }
+        }
     }
+
+    private fun onItemClicked(item: Subtitle) = shortToast(item.details.movieName)
 }
