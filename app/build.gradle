@@ -118,8 +118,9 @@ dependencies {
     implementation libraries.hiltLifeCycle
     kapt libraries.hiltLifeCycleCompiler
 
-    //coil
-    implementation libraries.coil
+    //glide
+    implementation libraries.glide
+    kapt libraries.glideCompiler
 
     //lottie
     implementation libraries.lottie

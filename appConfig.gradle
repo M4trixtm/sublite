@@ -17,7 +17,7 @@ ext {
             networkResponseAdapter: "4.1.0",
             hiltAndroid           : hilt_android,
             hiltLifeCycle         : "1.0.0-alpha02",
-            coil                  : "1.1.0",
+            glide                 : "4.11.0",
             lottie                : "3.5.0",
             leakCanary            : "2.4",
             legacySupport         : "1.0.0",
@@ -30,7 +30,7 @@ ext {
             coreTesting           : "2.1.0",
             mockWebServer         : "4.9.0",
             mockitoKotlin         : "2.2.0",
-            kotestAssertions       : "4.0.7"
+            kotestAssertions      : "4.0.7"
 
     ]
 
@@ -71,7 +71,8 @@ ext {
             hiltCompiler             : "com.google.dagger:hilt-android-compiler:$versions.hiltAndroid",
             hiltLifeCycle            : "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltLifeCycle",
             hiltLifeCycleCompiler    : "androidx.hilt:hilt-compiler:$versions.hiltLifeCycle",
-            coil                     : "io.coil-kt:coil:$versions.coil",
+            glide                    : "com.github.bumptech.glide:glide:$versions.glide",
+            glideCompiler            : "com.github.bumptech.glide:compiler:$versions.glide",
             lottie                   : "com.airbnb.android:lottie:$versions.lottie",
             leakCanary               : "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
             whatIf                   : "com.github.skydoves:whatif:$versions.whatIf",
