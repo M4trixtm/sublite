@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import m4trixtm.sublite.MainCoroutinesRule
 import m4trixtm.sublite.SubtitleMocks
-import m4trixtm.sublite.features.subtitle.SubtitleRepositoryImpl
+import m4trixtm.sublite.features.common.repository.SubtitleRepositoryImpl
 import m4trixtm.sublite.features.subtitle.SubtitleService
 import org.junit.Before
 import org.junit.Rule

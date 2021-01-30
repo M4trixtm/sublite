@@ -1,4 +1,4 @@
-package m4trixtm.sublite.features.subtitle
+package m4trixtm.sublite.features.common.repository
 
 import kotlinx.coroutines.flow.Flow
 import m4trixtm.sublite.features.ApiResponse

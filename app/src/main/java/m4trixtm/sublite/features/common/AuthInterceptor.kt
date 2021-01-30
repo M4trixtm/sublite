@@ -1,4 +1,4 @@
-package m4trixtm.sublite.features.subtitle
+package m4trixtm.sublite.features.common
 
 import m4trixtm.sublite.BuildConfig
 import okhttp3.Interceptor
