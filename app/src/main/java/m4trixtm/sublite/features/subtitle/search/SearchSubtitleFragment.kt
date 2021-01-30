@@ -8,10 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.skydoves.whatif.whatIfNotNull
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import m4trixtm.sublite.R
 import m4trixtm.sublite.core.platform.fragment.BaseFragment
 import m4trixtm.sublite.core.toast.shortToast
@@ -33,13 +30,18 @@ class SearchSubtitleFragment :
             lifecycleOwner = viewLifecycleOwner
             adapter = GroupieAdapter()
             model = viewModel
-
+            refreshLayout.setOnRefreshListener { refresh() }
             searchQuery.addTextChangedListener { search("$it") }
         }
 
         viewModel.clickedItem.collectOnLifecycleScope {
             it.whatIfNotNull { subtitle -> onItemClicked(subtitle) }
         }
+    }
+
+    @ExperimentalCoroutinesApi
+    private fun refresh() = with(binding) {
+        search(searchQuery.text.toString())
     }
 
     private fun onItemClicked(item: Subtitle) = shortToast(item.details.movieName)
