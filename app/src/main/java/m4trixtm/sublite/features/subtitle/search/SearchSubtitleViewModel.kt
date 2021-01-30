@@ -1,6 +1,5 @@
 package m4trixtm.sublite.features.subtitle.search
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -17,11 +16,21 @@ import javax.inject.Inject
 class SearchSubtitleViewModel @Inject constructor(private val repository: SubtitleRepository) :
     BaseViewModel() {
 
-    val loading = MutableLiveData(false)
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> get() = _loading
+
     private val searchQuery = Channel<String>()
     val subtitles: StateFlow<List<SearchSubtitleItem>?> = scope {
         searchQuery.transformToFlow { query ->
-            emitAll(repository.search(query, onSuccess = { loading(false) }, onError = { loading(false) }).mapToSubtitleList())
+            emitAll(
+                repository.search(
+                    query,
+                    onSuccess = { loading(false) },
+                    onError = {
+                        loading(false)
+                        println(it)
+                    }).mapToSubtitleList()
+            )
         }
     }
 
@@ -45,6 +54,6 @@ class SearchSubtitleViewModel @Inject constructor(private val repository: Subtit
         }
 
     private fun loading(isLoading: Boolean = true) {
-        this.loading.value = isLoading
+        this._loading.value = isLoading
     }
 }
