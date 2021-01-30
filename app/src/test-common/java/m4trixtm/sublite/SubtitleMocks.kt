@@ -98,18 +98,22 @@ object SubtitleMocks {
             files = subtitleFiles2
         )
 
-    val subtitleRelatedLinks1: SubtitleRelatedLinks
-        get() = SubtitleRelatedLinks(
-            label = "All subtitles for Interstellar",
-            url = "https://www.opensubtitles.com/pt-BR/movies/2014-interstellar",
-            imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
+    val subtitleRelatedLinks1: List<SubtitleRelatedLinks>
+        get() = listOf(
+            SubtitleRelatedLinks(
+                label = "All subtitles for Interstellar",
+                url = "https://www.opensubtitles.com/pt-BR/movies/2014-interstellar",
+                imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
+            )
         )
 
-    val subtitleRelatedLinks2: SubtitleRelatedLinks
-        get() = SubtitleRelatedLinks(
-            label = "All subtitles for Interstellar",
-            url = "https://www.opensubtitles.com/en/movies/2014-interstellar",
-            imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
+    val subtitleRelatedLinks2: List<SubtitleRelatedLinks>
+        get() = listOf(
+            SubtitleRelatedLinks(
+                label = "All subtitles for Interstellar",
+                url = "https://www.opensubtitles.com/en/movies/2014-interstellar",
+                imageUrl = "https://s9.osdb.link/features/8/0/2/594208.jpg"
+            )
         )
 
     val subtitleDetails2: SubtitleDetails
