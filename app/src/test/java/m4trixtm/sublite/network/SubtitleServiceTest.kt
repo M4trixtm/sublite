@@ -4,7 +4,10 @@ import com.haroldadmin.cnradapter.NetworkResponse
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import m4trixtm.sublite.*
+import m4trixtm.sublite.MainCoroutinesRule
+import m4trixtm.sublite.SubtitleMocks
+import m4trixtm.sublite.assertForeach
+import m4trixtm.sublite.assertThat
 import m4trixtm.sublite.features.subtitle.SubtitleService
 import okio.IOException
 import org.junit.Before
@@ -75,8 +78,8 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
                         tmdbId shouldBe details.tmdbId
                     }
 
-                    relatedLinks.assertThat {
-                        val relatedLinks = attributes.relatedLinks
+                    relatedLinks.assertForeach { subtitleRelatedLinksPos ->
+                        val relatedLinks = attributes.relatedLinks[subtitleRelatedLinksPos]
                         label shouldBe relatedLinks.label
                         url shouldBe relatedLinks.url
                         imageUrl shouldBe relatedLinks.imageUrl

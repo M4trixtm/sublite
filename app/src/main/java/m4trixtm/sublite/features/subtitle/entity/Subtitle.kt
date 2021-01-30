@@ -1,8 +1,10 @@
 package m4trixtm.sublite.features.subtitle.entity
 
 import androidx.annotation.Keep
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import m4trixtm.sublite.core.platform.entity.BaseEntity
+import m4trixtm.sublite.core.utils.MultiSubtitleRelatedLinksArrayOrObject
 import java.util.*
 
 @Keep
@@ -41,8 +43,9 @@ data class Subtitle(
     val release: String,
     @SerializedName("feature_details")
     val details: SubtitleDetails,
+    @JsonAdapter(MultiSubtitleRelatedLinksArrayOrObject::class)
     @SerializedName("related_links")
-    val relatedLinks: SubtitleRelatedLinks,
+    val relatedLinks: List<SubtitleRelatedLinks>,
     @SerializedName("files")
     val files: List<SubtitleFile>
 ) : BaseEntity<String>
