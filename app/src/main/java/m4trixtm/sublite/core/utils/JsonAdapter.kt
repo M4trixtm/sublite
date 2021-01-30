@@ -11,7 +11,9 @@ abstract class ArrayOrSingleObjectTypeAdapter<TypedList : List<Element>, Element
     private val elementKClass: KClass<Element>
 ) : JsonDeserializer<TypedList> {
     override fun deserialize(
-        json: JsonElement, typeOfT: Type?, ctx: JsonDeserializationContext
+        json: JsonElement,
+        typeOfT: Type?,
+        ctx: JsonDeserializationContext
     ): TypedList = when {
         json.isJsonArray -> json.asJsonArray.map {
             ctx.deserialize<Element>(
@@ -26,9 +28,9 @@ abstract class ArrayOrSingleObjectTypeAdapter<TypedList : List<Element>, Element
     abstract fun List<Element>.toTypedList(): TypedList
 }
 
-class MultiSubtitleRelatedLinksArrayOrObject
-    : ArrayOrSingleObjectTypeAdapter<List<SubtitleRelatedLinks>, SubtitleRelatedLinks>(
-    SubtitleRelatedLinks::class
-) {
+class MultiSubtitleRelatedLinksArrayOrObject :
+    ArrayOrSingleObjectTypeAdapter<List<SubtitleRelatedLinks>, SubtitleRelatedLinks>(
+        SubtitleRelatedLinks::class
+    ) {
     override fun List<SubtitleRelatedLinks>.toTypedList() = listOf(*this.toTypedArray())
 }
