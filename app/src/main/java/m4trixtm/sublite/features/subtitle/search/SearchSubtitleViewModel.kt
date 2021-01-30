@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import m4trixtm.sublite.core.extension.transformToFlow
 import m4trixtm.sublite.core.platform.viewmodel.BaseViewModel
 import m4trixtm.sublite.features.ApiResponse
-import m4trixtm.sublite.features.subtitle.SubtitleRepository
+import m4trixtm.sublite.features.common.repository.SubtitleRepository
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 import javax.inject.Inject
 
