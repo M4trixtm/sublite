@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.xwray.groupie.GroupieAdapter
 import m4trixtm.sublite.core.extension.loadFromUrl
+import m4trixtm.sublite.features.subtitle.entity.SubtitleRelatedLinks
 
 @BindingAdapter("android:gone")
 fun gone(view: View, gone: Boolean) {
@@ -31,4 +32,19 @@ fun swipeRefreshLayoutRefreshing(view: SwipeRefreshLayout, isRefreshing: Boolean
 @BindingAdapter("android:loadImageFromUrl")
 fun loadImageFromUrl(view: ImageView, url: String?) {
     url?.let { view.loadFromUrl(it) }
+}
+
+@BindingAdapter("android:loadSubtitleRelatedLinksImage")
+fun loadSubtitleRelatedLinksImage(view: ImageView, links: List<SubtitleRelatedLinks>?) {
+    var hasRelatedLinksAnyImage = false
+    links?.let {
+        it.forEach { relatedLink ->
+            relatedLink.imageUrl?.let { imageUrl ->
+                view.loadFromUrl(imageUrl)
+                hasRelatedLinksAnyImage = true
+            }
+        }
+        if (!hasRelatedLinksAnyImage || it.isEmpty())
+            view.loadFromUrl("null")
+    }
 }

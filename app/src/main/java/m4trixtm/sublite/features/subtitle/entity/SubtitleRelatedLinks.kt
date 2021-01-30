@@ -10,5 +10,5 @@ data class SubtitleRelatedLinks(
     @SerializedName("url")
     val url: String,
     @SerializedName("img_url")
-    val imageUrl: String
+    val imageUrl: String?
 )
