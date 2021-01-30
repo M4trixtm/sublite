@@ -29,7 +29,8 @@ class SearchSubtitleViewModel @Inject constructor(private val repository: Subtit
                     onError = {
                         loading(false)
                         println(it)
-                    }).mapToSubtitleList()
+                    }
+                ).mapToSubtitleList()
             )
         }
     }
