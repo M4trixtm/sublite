@@ -1,8 +1,9 @@
-package m4trixtm.sublite.features.subtitle
+package m4trixtm.sublite.features.common.repository
 
 import kotlinx.coroutines.flow.Flow
 import m4trixtm.sublite.core.platform.repository.BaseRepository
 import m4trixtm.sublite.features.ApiResponse
+import m4trixtm.sublite.features.subtitle.SubtitleService
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
 
