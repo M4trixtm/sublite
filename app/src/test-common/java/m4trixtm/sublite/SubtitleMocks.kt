@@ -1,7 +1,7 @@
 package m4trixtm.sublite
 
-import m4trixtm.sublite.features.ApiResponse
-import m4trixtm.sublite.features.Data
+import m4trixtm.sublite.features.common.ApiResponse
+import m4trixtm.sublite.features.common.Data
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDetails
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink

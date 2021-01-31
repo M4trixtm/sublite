@@ -1,4 +1,4 @@
-package m4trixtm.sublite.features
+package m4trixtm.sublite.features.common
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,4 +20,9 @@ data class Data<T>(
     val type: String,
     @SerializedName("attributes")
     val attributes: T
+)
+
+data class ApiDataResponse<T>(
+    @SerializedName("data")
+    val data: T
 )
