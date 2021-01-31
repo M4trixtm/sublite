@@ -26,8 +26,7 @@ class SearchSubtitleItem(
 fun bindSearchSubtitleList(view: RecyclerView, list: List<SearchSubtitleItem>?) {
     list?.let {
         (view.adapter as GroupieAdapter).apply {
-            this.clear()
-            addAll(it)
+            updateAsync(list)
         }
     }
 }

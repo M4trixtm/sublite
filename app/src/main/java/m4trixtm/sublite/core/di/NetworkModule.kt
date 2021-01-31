@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import m4trixtm.sublite.features.common.AuthInterceptor
+import m4trixtm.sublite.features.language.LanguageService
 import m4trixtm.sublite.features.subtitle.SubtitleService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -17,6 +18,11 @@ import javax.inject.Singleton
 object NetworkModule {
 
     const val BASE_URL = "https://www.opensubtitles.com/api/v1/"
+
+    @Provides
+    @Singleton
+    fun provideLanguageService(retrofit: Retrofit): LanguageService =
+        retrofit.create(LanguageService::class.java)
 
     @Provides
     @Singleton
