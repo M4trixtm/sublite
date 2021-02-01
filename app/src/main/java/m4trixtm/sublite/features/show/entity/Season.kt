@@ -1,6 +1,5 @@
 package m4trixtm.sublite.features.show.entity
 
-
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 import m4trixtm.sublite.core.platform.entity.BaseEntity
