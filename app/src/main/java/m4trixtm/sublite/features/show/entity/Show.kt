@@ -8,14 +8,14 @@ import m4trixtm.sublite.core.platform.entity.BaseEntity
 @Keep
 data class Show(
     @SerializedName("episode_number")
-    val episodeNumber: Int?,
+    val episodeNumber: Int? = null,
     /**
      * This is featureId
      */
     @SerializedName("feature_id")
     override val id: String,
     @SerializedName("feature_type")
-    val featureType: String?,
+    val featureType: String? = null,
     @SerializedName("imdb_id")
     val imdbId: Long,
     @SerializedName("img_url")
@@ -23,17 +23,17 @@ data class Show(
     @SerializedName("original_title")
     val originalTitle: String,
     @SerializedName("parent_imdb_id")
-    val parentImdbId: Long?,
+    val parentImdbId: Long? = null,
     @SerializedName("parent_title")
-    val parentTitle: String,
+    val parentTitle: String? = null,
     @SerializedName("season_number")
-    val seasonNumber: Int?,
+    val seasonNumber: Int? = null,
     @SerializedName("seasons")
-    val seasons: List<Season>?,
+    val seasons: List<Season>? = null,
     @SerializedName("seasons_count")
-    val seasonsCount: Int?,
+    val seasonsCount: Int? = null,
     @SerializedName("subtitles_count")
-    val subtitlesCount: Int,
+    val subtitlesCount: Int? = null,
     @SerializedName("subtitles_counts")
     val subtitlesCounts: SubtitlesCounts,
     @SerializedName("title")
