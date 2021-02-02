@@ -8,7 +8,7 @@ import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
 interface SubtitleRepository {
 
     fun search(
-        query: String,
+        parameters: Map<String, String>,
         onSuccess: () -> Unit,
         onError: (message: String) -> Unit
     ): Flow<ApiResponse<Subtitle>>

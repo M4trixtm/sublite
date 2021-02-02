@@ -12,11 +12,11 @@ class SubtitleRepositoryImpl(private val service: SubtitleService) :
     SubtitleRepository {
 
     override fun search(
-        query: String,
+        parameters: Map<String, String>,
         onSuccess: () -> Unit,
         onError: (message: String) -> Unit
     ): Flow<ApiResponse<Subtitle>> = networkRequest(
-        request = { service.search(query) },
+        request = { service.search(parameters) },
         onSuccess = { onSuccess() },
         onError = { onError(it) }
     )

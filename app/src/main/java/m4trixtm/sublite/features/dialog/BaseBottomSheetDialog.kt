@@ -19,7 +19,10 @@ abstract class BaseBottomSheetDialog<V : ViewDataBinding>(
 
     val binding: V by lazy {
         DataBindingUtil.inflate(
-            LayoutInflater.from(context), layout, null, false
+            LayoutInflater.from(context),
+            layout,
+            null,
+            false
         )
     }
 

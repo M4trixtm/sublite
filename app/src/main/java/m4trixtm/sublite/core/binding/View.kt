@@ -1,12 +1,14 @@
 package m4trixtm.sublite.core.binding
 
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.xwray.groupie.GroupieAdapter
 import m4trixtm.sublite.core.extension.loadFromUrl
+import m4trixtm.sublite.features.language.Language
 import m4trixtm.sublite.features.subtitle.entity.SubtitleRelatedLinks
 
 @BindingAdapter("android:gone")
@@ -46,5 +48,18 @@ fun loadSubtitleRelatedLinksImage(view: ImageView, links: List<SubtitleRelatedLi
         }
         if (!hasRelatedLinksAnyImage || it.isEmpty())
             view.loadFromUrl("null")
+    }
+}
+
+@BindingAdapter("android:bindSelectedLanguage")
+fun bindSelectedLanguages(view: EditText, list: List<Language>?) {
+    list?.let {
+        view.setText(
+            if (it.isNotEmpty())
+                it.map { language ->
+                    language.name
+                }.toString()
+            else ""
+        )
     }
 }

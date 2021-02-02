@@ -10,33 +10,50 @@
             type="com.xwray.groupie.GroupieAdapter" />
 
         <variable
+            name="languagesAdapter"
+            type="com.xwray.groupie.GroupieAdapter" />
+
+        <variable
             name="model"
             type="m4trixtm.sublite.features.subtitle.search.SearchSubtitleViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="Movie name...">
+            android:layout_height="?android:attr/actionBarSize">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchQuery"
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                app:contentInsetStart="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchQuery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/background_outlined_input"
+                    android:hint="Movie name"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:refreshing="@{model.loading}">
+            android:refreshing="@{model.loading}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -45,6 +62,47 @@
                 android:bindSearchSubtitleList="@{model.subtitles}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_subtitle_search" />
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/filterBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/languages"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:bindSelectedLanguage="@{model.selectedLanguages}"
+                    android:focusable="false"
+                    android:hint="Languages"
+                    android:inputType="none"
+                    android:padding="8dp"
+                    android:textIsSelectable="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/filterFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_filter_alt_24"
+            app:layout_anchor="@id/filterBottomSheet"
+            app:layout_anchorGravity="top|end" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

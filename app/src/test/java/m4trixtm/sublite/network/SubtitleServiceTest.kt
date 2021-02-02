@@ -32,7 +32,7 @@ class SubtitleServiceTest : ServiceTest<SubtitleService>() {
     fun `Subtitle search response parsing`() = runBlocking {
         enqueueResponse("search/response.json")
         val expected = SubtitleMocks.searchResponse
-        val actual = service.search("interstellar")
+        val actual = service.search(mapOf())
         mockWebServer.takeRequest()
 
         (actual as NetworkResponse.Success).body.assertThat {

@@ -35,7 +35,7 @@ class SubliteRepositoryTest {
 
     @Test
     fun `Search subtitles`() = runBlocking {
-        val searchQuery = "interstellar"
+        val searchQuery = mapOf<String, String>()
         val apiResponse = NetworkResponse.Success(body = SubtitleMocks.searchResponse, code = 200)
 
         whenever(service.search(searchQuery)).thenReturn(apiResponse)

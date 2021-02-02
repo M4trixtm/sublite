@@ -22,5 +22,4 @@ object LanguageMocks {
                 ),
             )
         )
-
 }

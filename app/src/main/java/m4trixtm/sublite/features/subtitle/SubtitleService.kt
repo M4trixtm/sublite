@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface SubtitleService {
 
     @GET("subtitles")
-    suspend fun search(@Query("query") query: String): NetworkResponse<ApiResponse<Subtitle>, NetworkError>
+    suspend fun search(@QueryMap parameters: Map<String, String>): NetworkResponse<ApiResponse<Subtitle>, NetworkError>
 
     @FormUrlEncoded
     @POST("download")
