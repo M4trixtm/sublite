@@ -12,9 +12,9 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="16dp"
         android:background="@drawable/background_bottom_sheet"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/actionsRecyclerView"

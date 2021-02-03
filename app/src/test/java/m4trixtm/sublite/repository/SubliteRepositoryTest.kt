@@ -47,7 +47,8 @@ class SubliteRepositoryTest {
     @Test
     fun `Get download link`() = runBlocking {
         val subtitleId = 12345
-        val apiResponse = NetworkResponse.Success(body = SubtitleMocks.downloadLinkResponse, code = 200)
+        val apiResponse =
+            NetworkResponse.Success(body = SubtitleMocks.downloadLinkResponse, code = 200)
 
         whenever(service.getDownloadLink(subtitleId)).thenReturn(apiResponse)
         repository.getDownloadLink(subtitleId, {}, {}).first()

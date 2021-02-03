@@ -12,7 +12,12 @@ enum class LogType {
     VERBOSE
 }
 
-inline fun Any.appLog(type: LogType = LogType.DEBUG, tag: String = this.javaClass.simpleName, throwable: Throwable? = null, message: () -> String) {
+inline fun Any.appLog(
+    type: LogType = LogType.DEBUG,
+    tag: String = this.javaClass.simpleName,
+    throwable: Throwable? = null,
+    message: () -> String
+) {
     when (type) {
         LogType.DEBUG -> {
             if (BuildConfig.DEBUG) {
