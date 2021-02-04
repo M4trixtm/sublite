@@ -3,10 +3,7 @@ package m4trixtm.sublite.features.subtitle.search
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import m4trixtm.sublite.core.extension.transformToFlow
 import m4trixtm.sublite.core.platform.viewmodel.BaseViewModel
@@ -30,7 +27,7 @@ class SearchSubtitleViewModel @Inject constructor(
 
     private val searchQuery = Channel<String>()
     val subtitles: StateFlow<List<SearchSubtitleItem>?> = scope {
-        searchQuery.transformToFlow { query -> searchSubtitleFlow(query) }
+        searchQuery.transformToFlow { query -> emitAll(searchSubtitleFlow(query)) }
     }
 
     private val _selectedLanguages = MutableStateFlow(listOf<Language>())
