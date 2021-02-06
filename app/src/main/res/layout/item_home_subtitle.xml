@@ -26,6 +26,7 @@
                 app:layout_constraintBottom_toTopOf="@id/item_home_subtitle_download_count"
                 android:textSize="17sp"
                 tools:text="Game of thrones S05E04"
+                android:text="@{subtitle.details.title}"
                 android:layout_margin="5dp"
                 android:breakStrategy="balanced"
                 android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="EN"
+                android:text="@{subtitle.language}"
                 tools:targetApi="m" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -58,6 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_home_subtitle_title"
                 tools:targetApi="m"
+                android:text="@{String.valueOf(subtitle.downloadCount)}"
                 tools:text="Downloads" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
