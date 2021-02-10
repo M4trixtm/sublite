@@ -17,7 +17,6 @@ class HomeShowItem(val show: Show, val onItemClicked: (item: Show) -> Unit) :
     }
 
     override fun getLayout(): Int = R.layout.item_home_show
-
 }
 
 @BindingAdapter("android:bindHomeShowList")
