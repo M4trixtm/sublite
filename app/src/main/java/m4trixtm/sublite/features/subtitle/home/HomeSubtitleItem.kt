@@ -23,8 +23,7 @@ class HomeSubtitleItem(val subtitle: Subtitle, val onItemClicked: (item: Subtitl
 fun bindHomeSubtitleList(view: RecyclerView, list: List<HomeSubtitleItem>?) {
     list?.let {
         (view.adapter as GroupieAdapter).apply {
-            this.clear()
-            addAll(it)
+            updateAsync(it)
         }
     }
 }
