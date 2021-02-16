@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="home_subtitle_item_width">230dp</dimen>
+    <dimen name="home_subtitle_item_height">100dp</dimen>
+</resources>

@@ -13,8 +13,8 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         android:layout_margin="5dp"
-        android:layout_width="210dp"
-        android:layout_height="80dp">
+        android:layout_width="@dimen/home_subtitle_item_width"
+        android:layout_height="@dimen/home_subtitle_item_height">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

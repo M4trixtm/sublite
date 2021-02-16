@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="home_subtitle_item_width">210dp</dimen>
+    <dimen name="home_subtitle_item_height">80dp</dimen>
 
 </resources>
