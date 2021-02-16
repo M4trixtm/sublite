@@ -2,4 +2,8 @@
 <resources>
     <dimen name="home_subtitle_item_width">310dp</dimen>
     <dimen name="home_subtitle_item_height">180dp</dimen>
+
+    <dimen name="home_show_item_with">290dp</dimen>
+    <dimen name="home_show_item_height">190dp</dimen>
+    <dimen name="home_show_item_image_height">140dp</dimen>
 </resources>
