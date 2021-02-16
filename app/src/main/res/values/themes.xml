@@ -13,4 +13,23 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Sublite.ItemStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardMaxElevation">6dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="Theme.Sublite.HomeSubtitleItemStyle" parent="Theme.Sublite.ItemStyle"/>
+
+    <style name="Theme.Sublite.HomeShowItemStyle" parent="Theme.Sublite.ItemStyle"/>
+
+    <style name="Theme.Sublite.ItemTitleBoldTextStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <!-- Attention! If you want to change the text color, override the night value for it! otherwise is going to mess the design! With love Moein :) -->
+    </style>
+
+    <style name="Theme.Sublite.ItemTitleRegularTextStyle" parent="TextAppearance.MaterialComponents.Subtitle2"/>
+
+    <style name="Theme.Sublite.ItemCaptionTextStyle" parent="TextAppearance.MaterialComponents.Caption"/>
 </resources>

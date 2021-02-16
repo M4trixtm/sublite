@@ -10,9 +10,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
-        android:layout_margin="5dp"
+        style="@style/Theme.Sublite.HomeSubtitleItemStyle"
         android:layout_width="@dimen/home_subtitle_item_width"
         android:layout_height="@dimen/home_subtitle_item_height">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +22,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/item_home_subtitle_download_count"
-                android:textSize="17sp"
+                style="@style/Theme.Sublite.ItemTitleRegularTextStyle"
                 tools:text="Game of thrones S05E04"
                 android:text="@{subtitle.details.title}"
                 android:layout_margin="5dp"
@@ -39,7 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_home_subtitle_download_count"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_home_subtitle_download_count"
-                android:textSize="14sp"
+                style="@style/Theme.Sublite.ItemCaptionTextStyle"
                 android:layout_margin="5dp"
                 android:breakStrategy="balanced"
                 android:layout_width="wrap_content"
@@ -54,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:breakStrategy="balanced"
-                android:textSize="14sp"
+                style="@style/Theme.Sublite.ItemCaptionTextStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/item_home_subtitle_language"
                 app:layout_constraintStart_toStartOf="parent"
