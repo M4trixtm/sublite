@@ -35,13 +35,13 @@ class SearchSubtitleFragment :
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             adapter = GroupieAdapter()
-            languagesAdapter = GroupieAdapter()
+            selectedLanguagesAdapter = GroupieAdapter()
             model = viewModel
 
             refreshLayout.setOnRefreshListener { search("${searchQuery.text}") }
             searchQuery.addTextChangedListener { search("$it") }
             filterFab.setOnClickListener { filterBottomSheetBehavior.toggleState() }
-            languages.setOnClickListener { showLanguagesDialog() }
+            addLanguages.setOnClickListener { showLanguagesDialog() }
         }
 
         viewModel.clickedItem.collectOnLifecycleScope {

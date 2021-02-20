@@ -10,7 +10,7 @@
             type="com.xwray.groupie.GroupieAdapter" />
 
         <variable
-            name="languagesAdapter"
+            name="selectedLanguagesAdapter"
             type="com.xwray.groupie.GroupieAdapter" />
 
         <variable
@@ -73,29 +73,27 @@
             android:layout_height="wrap_content"
             android:background="#fff"
             android:orientation="vertical"
+            android:padding="16dp"
             app:behavior_peekHeight="0dp"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:behavior_peekHeight="200dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/addLanguages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp">
+                android:drawableEnd="@drawable/ic_baseline_add_24"
+                android:text="Languages"
+                android:textColor="#000"
+                android:textSize="17sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/languages"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:bindSelectedLanguage="@{model.selectedLanguages}"
-                    android:focusable="false"
-                    android:hint="Languages"
-                    android:inputType="none"
-                    android:padding="8dp"
-                    android:textIsSelectable="true" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/selectedLanguagesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:selectionRequired="false"
+                android:layout_marginTop="8dp"
+                android:bindLanguagesChipsList="@{model.selectedLanguages}" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

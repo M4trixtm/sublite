@@ -25,9 +25,14 @@ class SearchSubtitleViewModel @Inject constructor(
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> get() = _loading
 
-    private val searchQuery = Channel<String>()
+    private var searchQuery: String? = null
+    private val searchQueryChannel = Channel<String>()
     val subtitles: StateFlow<List<SearchSubtitleItem>?> = scope {
-        searchQuery.transformToFlow { query -> emitAll(searchSubtitleFlow(query)) }
+        searchQueryChannel.transformToFlow { query ->
+            searchQuery = query
+            println("emit: $query")
+            emitAll(searchSubtitleFlow(query))
+        }
     }
 
     private val _selectedLanguages = MutableStateFlow(listOf<Language>())
@@ -50,17 +55,8 @@ class SearchSubtitleViewModel @Inject constructor(
     fun search(query: String) {
         loading()
         viewModelScope.launch {
-            searchQuery.send(query)
+            searchQueryChannel.send(query)
         }
-    }
-
-    private fun searchParams(query: String): Map<String, String> = mapOf(
-        "query" to query,
-        "languages" to selectedLanguagesCode
-    )
-
-    private fun loading(isLoading: Boolean = true) {
-        this._loading.value = isLoading
     }
 
     private fun searchSubtitleFlow(query: String) = repository.search(
@@ -93,5 +89,18 @@ class SearchSubtitleViewModel @Inject constructor(
             } else
                 remove(language)
         }
+        searchQuery?.let {
+            loading(true)
+            viewModelScope.launch { searchQueryChannel.send(it) }
+        }
+    }
+
+    private fun searchParams(query: String): Map<String, String> = mapOf(
+        "query" to query,
+        "languages" to selectedLanguagesCode
+    )
+
+    private fun loading(isLoading: Boolean = true) {
+        this._loading.value = isLoading
     }
 }
