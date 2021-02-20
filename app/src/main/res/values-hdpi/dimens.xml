@@ -6,4 +6,7 @@
     <dimen name="home_show_item_with">180dp</dimen>
     <dimen name="home_show_item_height">130dp</dimen>
     <dimen name="home_show_item_image_height">80dp</dimen>
+
+    <dimen name="home_icons_width">34dp</dimen>
+    <dimen name="home_icons_height">34dp</dimen>
 </resources>
