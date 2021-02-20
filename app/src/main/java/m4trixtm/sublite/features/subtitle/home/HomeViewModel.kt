@@ -29,10 +29,12 @@ class HomeViewModel @Inject constructor(
         const val typeKey: String = "type"
     }
 
-    private val loadingSignal = Channel<HashMap<String, String?>>()
+    private val mostDownloadSignal = Channel<HashMap<String, String?>>()
+    private val latestSignal = Channel<HashMap<String, String?>>()
+    private val popularSignal = Channel<HashMap<String, String?>>()
 
     val mostDownloadedSubtitles: StateFlow<List<HomeSubtitleItem>?> = scope {
-        loadingSignal.transformToFlow { query ->
+        mostDownloadSignal.transformToFlow { query ->
             emitAll(
                 subtitleRepository.getMostDownloaded(
                     languages = query[languagesKey],
@@ -46,7 +48,7 @@ class HomeViewModel @Inject constructor(
     }
 
     val latestSubtitles: StateFlow<List<HomeSubtitleItem>?> = scope {
-        loadingSignal.transformToFlow { query ->
+        latestSignal.transformToFlow { query ->
             emitAll(
                 subtitleRepository.getLatestSubtitles(
                     languages = query[languagesKey],
@@ -59,7 +61,7 @@ class HomeViewModel @Inject constructor(
     }
 
     val popularShows: StateFlow<List<HomeShowItem>?> = scope {
-        loadingSignal.transformToFlow { query ->
+        popularSignal.transformToFlow { query ->
             emitAll(
                 showRepository.getPopularFeatures(
                     languages = query[languagesKey],
@@ -74,7 +76,21 @@ class HomeViewModel @Inject constructor(
     fun loadHomePage() {
         //TODO load user preferred language and types instead of putting null
         viewModelScope.launch {
-            loadingSignal.send(
+            mostDownloadSignal.send(
+                hashMapOf(
+                    languagesKey to null,
+                    typeKey to null
+                )
+            )
+
+            latestSignal.send(
+                hashMapOf(
+                    languagesKey to null,
+                    typeKey to null
+                )
+            )
+
+            popularSignal.send(
                 hashMapOf(
                     languagesKey to null,
                     typeKey to null
