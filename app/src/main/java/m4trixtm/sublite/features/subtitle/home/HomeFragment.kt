@@ -3,6 +3,7 @@ package m4trixtm.sublite.features.subtitle.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.skydoves.whatif.whatIfNotNull
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -27,12 +28,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             viewModel = homeViewModel
         }
 
-        homeViewModel.selectedShow.collectOnLifecycleScope {
-            requireContext().shortToast(it?.title.toString())
+        homeViewModel.selectedShow.collectOnLifecycleScope { show ->
+            show.whatIfNotNull {
+                requireContext().shortToast(it.title)
+            }
         }
 
-        homeViewModel.selectedSubtitle.collectOnLifecycleScope {
-            requireContext().shortToast(it?.details?.title.toString())
+        homeViewModel.selectedSubtitle.collectOnLifecycleScope { subtitle ->
+            subtitle.whatIfNotNull {
+                requireContext().shortToast(it.details.title)
+            }
         }
 
         homeViewModel.loadHomePage()
