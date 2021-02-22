@@ -2,10 +2,9 @@ package m4trixtm.sublite.features.subtitle.home
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import m4trixtm.sublite.core.extension.transformToFlow
 import m4trixtm.sublite.core.platform.viewmodel.BaseViewModel
 import m4trixtm.sublite.features.common.ApiResponse
 import m4trixtm.sublite.features.common.PaginationApiResponse
@@ -29,12 +28,13 @@ class HomeViewModel @Inject constructor(
         const val typeKey: String = "type"
     }
 
-    private val mostDownloadSignal = Channel<HashMap<String, String?>>()
-    private val latestSignal = Channel<HashMap<String, String?>>()
-    private val popularSignal = Channel<HashMap<String, String?>>()
+    private val refreshSignal = MutableSharedFlow<HashMap<String, String?>>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
     val mostDownloadedSubtitles: StateFlow<List<HomeSubtitleItem>?> = scope {
-        mostDownloadSignal.transformToFlow { query ->
+        refreshSignal.transform { query ->
             emitAll(
                 subtitleRepository.getMostDownloaded(
                     languages = query[languagesKey],
@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor(
     }
 
     val latestSubtitles: StateFlow<List<HomeSubtitleItem>?> = scope {
-        latestSignal.transformToFlow { query ->
+        refreshSignal.transform { query ->
             emitAll(
                 subtitleRepository.getLatestSubtitles(
                     languages = query[languagesKey],
@@ -61,7 +61,7 @@ class HomeViewModel @Inject constructor(
     }
 
     val popularShows: StateFlow<List<HomeShowItem>?> = scope {
-        popularSignal.transformToFlow { query ->
+        refreshSignal.transform { query ->
             emitAll(
                 showRepository.getPopularFeatures(
                     languages = query[languagesKey],
@@ -76,25 +76,8 @@ class HomeViewModel @Inject constructor(
     fun loadHomePage() {
         //TODO load user preferred language and types instead of putting null
         viewModelScope.launch {
-            mostDownloadSignal.send(
-                hashMapOf(
-                    languagesKey to null,
-                    typeKey to null
-                )
-            )
-
-            latestSignal.send(
-                hashMapOf(
-                    languagesKey to null,
-                    typeKey to null
-                )
-            )
-
-            popularSignal.send(
-                hashMapOf(
-                    languagesKey to null,
-                    typeKey to null
-                )
+            refreshSignal.emit(
+                hashMapOf(languagesKey to null, typeKey to null)
             )
         }
     }
