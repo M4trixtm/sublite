@@ -6,6 +6,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import m4trixtm.sublite.core.platform.viewmodel.BaseViewModel
+import m4trixtm.sublite.core.state.UiState
 import m4trixtm.sublite.features.common.ApiResponse
 import m4trixtm.sublite.features.common.PaginationApiResponse
 import m4trixtm.sublite.features.common.repository.ShowRepository
@@ -33,14 +34,20 @@ class HomeViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
+    val uiState = MutableStateFlow<UiState>(value = UiState.Loading)
+
     val mostDownloadedSubtitles: StateFlow<List<HomeSubtitleItem>?> = scope {
         refreshSignal.transform { query ->
             emitAll(
                 subtitleRepository.getMostDownloaded(
                     languages = query[languagesKey],
                     type = query[typeKey],
-                    onError = {},
-                    onSuccess = {}
+                    onError = {
+                        updateUiState(UiState.Failure(message = it))
+                    },
+                    onSuccess = {
+                        updateUiState(UiState.Success)
+                    }
                 )
                     .mapToSubtitleList()
             )
@@ -53,8 +60,12 @@ class HomeViewModel @Inject constructor(
                 subtitleRepository.getLatestSubtitles(
                     languages = query[languagesKey],
                     type = query[typeKey],
-                    onError = {},
-                    onSuccess = {}
+                    onError = {
+                        updateUiState(UiState.Failure(message = it))
+                    },
+                    onSuccess = {
+                        updateUiState(UiState.Success)
+                    }
                 ).mapToSubtitleList()
             )
         }
@@ -66,8 +77,12 @@ class HomeViewModel @Inject constructor(
                 showRepository.getPopularFeatures(
                     languages = query[languagesKey],
                     type = query[typeKey],
-                    onError = {},
-                    onSuccess = {}
+                    onError = {
+                        updateUiState(UiState.Failure(message = it))
+                    },
+                    onSuccess = {
+                        updateUiState(UiState.Success)
+                    }
                 ).mapToShowList()
             )
         }
@@ -76,6 +91,7 @@ class HomeViewModel @Inject constructor(
     fun loadHomePage() {
         //TODO load user preferred language and types instead of putting null
         viewModelScope.launch {
+            updateUiState(UiState.Loading)
             refreshSignal.emit(
                 hashMapOf(languagesKey to null, typeKey to null)
             )
@@ -102,6 +118,12 @@ class HomeViewModel @Inject constructor(
             HomeShowItem(data.attributes) { item ->
                 _selectedShow.value = item
             }
+        }
+    }
+
+    private fun updateUiState(state: UiState) {
+        viewModelScope.launch {
+            uiState.emit(state)
         }
     }
 }
