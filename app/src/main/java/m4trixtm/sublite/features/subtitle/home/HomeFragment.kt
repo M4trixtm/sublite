@@ -40,6 +40,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
         }
 
+        binding.failureLayout.tryAgainButton.setOnClickListener {
+            loadHome()
+        }
+        loadHome()
+    }
+
+    private fun loadHome() {
         homeViewModel.loadHomePage()
     }
 }
