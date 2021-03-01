@@ -6,12 +6,15 @@ import androidx.fragment.app.viewModels
 import com.skydoves.whatif.whatIfNotNull
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import m4trixtm.sublite.R
+import m4trixtm.sublite.core.extension.networkFlow
 import m4trixtm.sublite.core.platform.fragment.BaseFragment
 import m4trixtm.sublite.core.toast.shortToast
 import m4trixtm.sublite.databinding.FragmentHomeBinding
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel: HomeViewModel by viewModels()
@@ -44,9 +47,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             loadHome()
         }
         loadHome()
+        observeNetwork()
     }
 
     private fun loadHome() {
         homeViewModel.loadHomePage()
+    }
+
+    /**
+     * NOTE: Move this to [BaseFragment] if you want to observe in all fragments!
+     */
+    private fun observeNetwork() {
+        requireActivity().networkFlow().collectOnLifecycleScope {
+            when (it) {
+                true -> hideOfflineStatus()
+                false -> showOfflineStatus()
+            }
+        }
     }
 }
