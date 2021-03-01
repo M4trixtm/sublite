@@ -6,4 +6,6 @@
     <string name="section_latest">Latest subtitles</string>
     <string name="see_more">See more</string>
     <string name="try_again">Try again</string>
+    <string name="net_not_available">Internet is not available!</string>
+    <string name="back_online">Back online!</string>
 </resources>
