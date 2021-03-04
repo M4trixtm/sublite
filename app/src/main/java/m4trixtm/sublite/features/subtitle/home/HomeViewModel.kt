@@ -1,6 +1,7 @@
 package m4trixtm.sublite.features.subtitle.home
 
 import androidx.lifecycle.viewModelScope
+import com.skydoves.whatif.whatIf
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
@@ -95,6 +96,12 @@ class HomeViewModel @Inject constructor(
             refreshSignal.emit(
                 hashMapOf(languagesKey to null, typeKey to null)
             )
+        }
+    }
+
+    fun reloadHomeIfNeeded() {
+        whatIf(uiState.value is UiState.Failure) {
+            loadHomePage()
         }
     }
 

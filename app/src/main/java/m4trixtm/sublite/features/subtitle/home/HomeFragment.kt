@@ -60,7 +60,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun observeNetwork() {
         requireActivity().networkFlow().collectOnLifecycleScope {
             when (it) {
-                true -> hideOfflineStatus()
+                true -> {
+                    hideOfflineStatus()
+                    homeViewModel.reloadHomeIfNeeded()
+                }
                 false -> showOfflineStatus()
             }
         }
