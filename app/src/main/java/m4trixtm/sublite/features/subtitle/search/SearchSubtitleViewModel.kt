@@ -30,8 +30,12 @@ class SearchSubtitleViewModel @Inject constructor(
     val subtitles: StateFlow<List<SearchSubtitleItem>?> = scope {
         searchQueryChannel.transformToFlow { query ->
             searchQuery = query
-            println("emit: $query")
-            emitAll(searchSubtitleFlow(query))
+            if (query.isNotEmpty())
+                emitAll(searchSubtitleFlow(query))
+            else {
+                emit(listOf())
+                _loading.value = false
+            }
         }
     }
 

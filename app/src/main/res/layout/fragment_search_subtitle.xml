@@ -18,65 +18,65 @@
             type="m4trixtm.sublite.features.subtitle.search.SearchSubtitleViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:fitsSystemWindows="true"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize">
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#fff">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentInsetStart="0dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/searchQuery"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/background_outlined_input"
-                    android:hint="Movie name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="8dp" />
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/filterIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_baseline_filter_alt_24" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchQuery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/filterIcon"
+                        android:background="@null"
+                        android:hint="Movie name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="8dp" />
+                </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:refreshing="@{model.loading}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adapter="@{adapter}"
-                android:bindSearchSubtitleList="@{model.subtitles}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_subtitle_search" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/filterBottomSheet"
+            android:id="@+id/filterLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
             android:orientation="vertical"
             android:padding="16dp"
-            app:behavior_peekHeight="0dp"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-            tools:behavior_peekHeight="200dp">
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/addLanguages"
@@ -91,18 +91,47 @@
                 android:id="@+id/selectedLanguagesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:selectionRequired="false"
                 android:layout_marginTop="8dp"
-                android:bindLanguagesChipsList="@{model.selectedLanguages}" />
+                android:bindLanguagesChipsList="@{model.selectedLanguages}"
+                app:selectionRequired="false" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/collapseFilterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_drop_up_24" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/filterFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_filter_alt_24"
-            app:layout_anchor="@id/filterBottomSheet"
-            app:layout_anchorGravity="top|end" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:refreshing="@{model.loading}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adapter="@{adapter}"
+                    android:bindSearchSubtitleList="@{model.subtitles}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_subtitle_search" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_ils_search"
+                    android:drawablePadding="8dp"
+                    android:gone="@{model.loading || model.subtitles.size>0}"
+                    android:gravity="center"
+                    android:text="Search something..." />
+            </FrameLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

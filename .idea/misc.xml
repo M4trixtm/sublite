@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Programming/Projects/sublite/app/src/main/res/drawable/ic_ils_search.xml" value="0.36512820512820515" />
+        <entry key="..\:/Programming/Projects/sublite/app/src/main/res/layout/fragment_home.xml" value="0.3546875" />
+        <entry key="..\:/Programming/Projects/sublite/app/src/main/res/layout/fragment_search_subtitle.xml" value="0.34923076923076923" />
+        <entry key="..\:/Programming/Projects/sublite/app/src/main/res/layout/item_subtitle_search.xml" value="0.3546875" />
+        <entry key="..\:/Programming/Projects/sublite/app/src/main/res/layout/layout_filter_expandable.xml" value="0.3546875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
