@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import m4trixtm.sublite.R
-import m4trixtm.sublite.core.extension.onNetworkStateChanged
 import m4trixtm.sublite.core.platform.fragment.BaseFragment
 import m4trixtm.sublite.core.toast.shortToast
 import m4trixtm.sublite.databinding.FragmentHomeBinding
@@ -29,38 +28,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             mostDownloadAdapter = GroupieAdapter()
             latestAdapter = GroupieAdapter()
             viewModel = homeViewModel
+
+            failureLayout.tryAgainButton.setOnClickListener { loadHome() }
         }
 
-        homeViewModel.selectedShow.collectOnLifecycleScope { show ->
-            show.whatIfNotNull {
-                requireContext().shortToast(it.title)
+        homeViewModel.apply {
+            selectedShow.collectOnLifecycleScope { show ->
+                show.whatIfNotNull {
+                    requireContext().shortToast(it.title)
+                }
+            }
+
+            selectedSubtitle.collectOnLifecycleScope { subtitle ->
+                subtitle.whatIfNotNull {
+                    requireContext().shortToast(it.details.title)
+                }
             }
         }
 
-        homeViewModel.selectedSubtitle.collectOnLifecycleScope { subtitle ->
-            subtitle.whatIfNotNull {
-                requireContext().shortToast(it.details.title)
-            }
-        }
-
-        binding.failureLayout.tryAgainButton.setOnClickListener {
-            loadHome()
-        }
         loadHome()
-        observeNetwork()
     }
 
-    private fun loadHome() {
-        homeViewModel.loadHomePage()
-    }
+    private fun loadHome() = homeViewModel.loadHomePage()
 
-    /**
-     * NOTE: Move this to [BaseFragment] if you want to observe in all fragments!
-     */
-    private fun observeNetwork() = onNetworkStateChanged { connected ->
-        if (connected) {
-            hideOfflineStatus()
-            homeViewModel.reloadHomeIfNeeded()
-        } else showOfflineStatus()
+    override fun onNetworkAvailable() {
+        super.onNetworkAvailable()
+        homeViewModel.reloadHomeIfNeeded()
     }
 }

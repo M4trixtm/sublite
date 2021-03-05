@@ -25,11 +25,6 @@ class HomeViewModel @Inject constructor(
     private val showRepository: ShowRepository
 ) : BaseViewModel() {
 
-    companion object {
-        const val languagesKey: String = "lang"
-        const val typeKey: String = "type"
-    }
-
     private val refreshSignal = MutableSharedFlow<HashMap<String, String?>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
@@ -132,5 +127,10 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             uiState.emit(state)
         }
+    }
+
+    companion object {
+        const val languagesKey: String = "lang"
+        const val typeKey: String = "type"
     }
 }
