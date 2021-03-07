@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="subtitle"
+            type="m4trixtm.sublite.features.subtitle.entity.Subtitle" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Theme.Sublite.HomeSubtitleItemStyle"
+        android:layout_width="@dimen/home_subtitle_item_width"
+        android:layout_height="@dimen/home_subtitle_item_height">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_home_subtitle_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/item_home_subtitle_download_count"
+                style="@style/Theme.Sublite.ItemTitleRegularTextStyle"
+                tools:text="Game of thrones S05E04"
+                android:text="@{subtitle.details.title}"
+                android:layout_margin="5dp"
+                android:breakStrategy="balanced"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:targetApi="m" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_home_subtitle_language"
+                app:layout_constraintTop_toTopOf="@id/item_home_subtitle_download_count"
+                app:layout_constraintBottom_toBottomOf="@id/item_home_subtitle_download_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_home_subtitle_download_count"
+                style="@style/Theme.Sublite.ItemCaptionTextStyle"
+                android:layout_margin="5dp"
+                android:breakStrategy="balanced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="EN"
+                android:text="@{subtitle.language}"
+                tools:targetApi="m" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_home_subtitle_download_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:breakStrategy="balanced"
+                style="@style/Theme.Sublite.ItemCaptionTextStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/item_home_subtitle_language"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_home_subtitle_title"
+                tools:targetApi="m"
+                android:text="@{String.valueOf(subtitle.downloadCount)}"
+                tools:text="Downloads" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import m4trixtm.sublite.features.common.AuthInterceptor
+import m4trixtm.sublite.features.show.ShowService
 import m4trixtm.sublite.features.subtitle.SubtitleService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -22,6 +23,11 @@ object NetworkModule {
     @Singleton
     fun provideSubtitleService(retrofit: Retrofit): SubtitleService =
         retrofit.create(SubtitleService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideShowService(retrofit: Retrofit): ShowService =
+        retrofit.create(ShowService::class.java)
 
     @Provides
     @Singleton

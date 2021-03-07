@@ -55,4 +55,28 @@ class SubliteRepositoryTest {
 
         Unit
     }
+
+    @Test
+    fun `Get Most downloaded`() = runBlocking {
+        val apiResponse = NetworkResponse.Success(body = SubtitleMocks.searchResponse, code = 200)
+
+        whenever(service.getMostDownloaded()).thenReturn(apiResponse)
+        repository.getMostDownloaded(onSuccess = {}, onError = {}).first()
+
+        verify(service).getMostDownloaded()
+
+        Unit
+    }
+
+    @Test
+    fun `Get latest Subtitles`() = runBlocking {
+        val apiResponse = NetworkResponse.Success(body = SubtitleMocks.searchResponse, code = 200)
+
+        whenever(service.getLatestSubtitles()).thenReturn(apiResponse)
+        repository.getLatestSubtitles(onSuccess = {}, onError = {}).first()
+
+        verify(service).getLatestSubtitles()
+
+        Unit
+    }
 }

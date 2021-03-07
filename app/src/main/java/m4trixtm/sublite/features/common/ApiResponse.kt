@@ -1,8 +1,8 @@
-package m4trixtm.sublite.features
+package m4trixtm.sublite.features.common
 
 import com.google.gson.annotations.SerializedName
 
-data class ApiResponse<T>(
+data class PaginationApiResponse<T>(
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_count")
@@ -20,4 +20,9 @@ data class Data<T>(
     val type: String,
     @SerializedName("attributes")
     val attributes: T
+)
+
+data class ApiResponse<T>(
+    @SerializedName("data")
+    val data: List<Data<T>>
 )

@@ -1,7 +1,7 @@
 package m4trixtm.sublite
 
-import m4trixtm.sublite.features.ApiResponse
-import m4trixtm.sublite.features.Data
+import m4trixtm.sublite.features.common.PaginationApiResponse
+import m4trixtm.sublite.features.common.Data
 import m4trixtm.sublite.features.subtitle.entity.Subtitle
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDetails
 import m4trixtm.sublite.features.subtitle.entity.SubtitleDownloadLink
@@ -13,8 +13,8 @@ typealias SubtitleData = Data<Subtitle>
 
 object SubtitleMocks {
 
-    val searchResponse: ApiResponse<Subtitle>
-        get() = ApiResponse(
+    val searchResponse: PaginationApiResponse<Subtitle>
+        get() = PaginationApiResponse(
             totalPages = 1,
             totalCount = 10,
             page = 1,

@@ -1,16 +1,76 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Sublite" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Sublite" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/open_sans</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Sublite.ItemStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardMaxElevation">6dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="Theme.Sublite.HomeSubtitleItemStyle" parent="Theme.Sublite.ItemStyle"/>
+
+    <style name="Theme.Sublite.HomeShowItemStyle" parent="Theme.Sublite.ItemStyle"/>
+
+    <style name="Theme.Sublite.ItemTitleBoldTextStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <!-- Attention! If you want to change the text color, override the night value for it! otherwise is going to mess the design! With love Moein :) -->
+    </style>
+
+    <style name="Theme.Sublite.ItemTitleRegularTextStyle" parent="TextAppearance.MaterialComponents.Subtitle2"/>
+
+    <style name="Theme.Sublite.ItemCaptionTextStyle" parent="TextAppearance.MaterialComponents.Caption"/>
+
+    <style name="Theme.Sublite.AppTitleStyle" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="Theme.Sublite.SectionTitleStyle" parent="TextAppearance.MaterialComponents.Headline6"/>
+
+    <style name="Theme.Sublite.IconOnlyButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="iconTint">?attr/colorOnPrimary</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">50dp</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cornerRadius">25dp</item>
+    </style>
+
+    <style name="AppTheme.moreButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="android:autoSizeMinTextSize" tools:targetApi="o">10sp</item>
+        <item name="android:autoSizeMaxTextSize" tools:targetApi="o">14sp</item>
+    </style>
+
+    <style name="Theme.Sublite.tryAgain" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="strokeColor">?attr/colorOnPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="strokeWidth">1dp</item>
     </style>
 </resources>
